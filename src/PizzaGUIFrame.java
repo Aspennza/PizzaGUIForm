@@ -167,4 +167,26 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         orderPnl.add(scroller);
         mainPnl.add(orderPnl, gbc);
     }
+
+    private void createControlPnl()
+    {
+        controlPnl = new JPanel();
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+
+        controlPnl.setBorder(new EtchedBorder());
+        controlPnl.setLayout(new GridLayout(1, 3));
+
+        orderBtn = new JButton("Order");
+        clearBtn = new JButton("Clear");
+        quitBtn = new JButton("Quit");
+
+        controlPnl.add(orderBtn);
+
+
+
+    }
 }
