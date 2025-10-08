@@ -56,6 +56,8 @@ public class PizzaGUIFrame extends javax.swing.JFrame
 
         createToppingPnl();
 
+        createOrderPnl();
+
         setSize(screenWidth * 3/4, screenHeight * 3/4);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -126,14 +128,14 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         toppingPnl.setBorder(new TitledBorder(new EtchedBorder(), "Toppings"));
         toppingPnl.setLayout(new GridLayout(4, 2));
 
-        pepperoniCB = new JCheckBox("Pepperoni");
-        sausageCB = new JCheckBox("Sausage");
-        jalapenoCB = new JCheckBox("Jalapeno");
-        onionCB = new JCheckBox("Onion");
-        pineappleCB = new JCheckBox("Pineapple");
-        pepperCB = new JCheckBox("Green Pepper");
-        blackOliveCB = new JCheckBox("Black Olive");
-        greenOliveCB = new JCheckBox("Green Olive");
+        pepperoniCB = new JCheckBox("Pepperoni +$1.00");
+        sausageCB = new JCheckBox("Sausage +$1.00");
+        jalapenoCB = new JCheckBox("Jalapeno +$1.00");
+        onionCB = new JCheckBox("Onion +$1.00");
+        pineappleCB = new JCheckBox("Pineapple +$1.00");
+        pepperCB = new JCheckBox("Green Pepper +$1.00");
+        blackOliveCB = new JCheckBox("Black Olive +$1.00");
+        greenOliveCB = new JCheckBox("Green Olive +$1.00");
 
         toppingPnl.add(pepperoniCB);
         toppingPnl.add(sausageCB);
@@ -145,5 +147,24 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         toppingPnl.add(greenOliveCB);
 
         mainPnl.add(toppingPnl, gbc);
+    }
+
+    private void createOrderPnl()
+    {
+        orderPnl = new JPanel();
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 2;
+        gbc.fill = GridBagConstraints.BOTH;
+
+        orderPnl.setBorder(new TitledBorder(new EtchedBorder(), "Your Order"));
+
+        orderTA = new JTextArea(10, 50);
+        orderTA.setEditable(false);
+        scroller = new JScrollPane(orderTA);
+
+        orderPnl.add(scroller);
+        mainPnl.add(orderPnl, gbc);
     }
 }
