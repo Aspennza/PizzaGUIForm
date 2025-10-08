@@ -54,6 +54,8 @@ public class PizzaGUIFrame extends javax.swing.JFrame
 
         createSizePnl();
 
+        createToppingPnl();
+
         setSize(screenWidth * 3/4, screenHeight * 3/4);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,7 +70,7 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         gbc.gridy = 0;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        //may need to add a fill constraint
+        gbc.fill = GridBagConstraints.BOTH;
 
         crustPnl.setLayout(new GridLayout(3, 1));
         crustPnl.setBorder(new TitledBorder(new EtchedBorder(), "Crust Type"));
@@ -98,7 +100,7 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         gbc.gridy = 1;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        //may need to add a fill constraint
+        gbc.fill = GridBagConstraints.BOTH;
 
         sizePnl.setBorder(new TitledBorder(new EtchedBorder(), "Pizza Size"));
 
@@ -110,5 +112,38 @@ public class PizzaGUIFrame extends javax.swing.JFrame
 
         sizePnl.add(sizeCB);
         mainPnl.add(sizePnl, gbc);
+    }
+
+    private void createToppingPnl()
+    {
+        toppingPnl = new JPanel();
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 2;
+        gbc.fill = GridBagConstraints.BOTH;
+
+        toppingPnl.setBorder(new TitledBorder(new EtchedBorder(), "Toppings"));
+        toppingPnl.setLayout(new GridLayout(4, 2));
+
+        pepperoniCB = new JCheckBox("Pepperoni");
+        sausageCB = new JCheckBox("Sausage");
+        jalapenoCB = new JCheckBox("Jalapeno");
+        onionCB = new JCheckBox("Onion");
+        pineappleCB = new JCheckBox("Pineapple");
+        pepperCB = new JCheckBox("Green Pepper");
+        blackOliveCB = new JCheckBox("Black Olive");
+        greenOliveCB = new JCheckBox("Green Olive");
+
+        toppingPnl.add(pepperoniCB);
+        toppingPnl.add(sausageCB);
+        toppingPnl.add(jalapenoCB);
+        toppingPnl.add(onionCB);
+        toppingPnl.add(pineappleCB);
+        toppingPnl.add(pepperCB);
+        toppingPnl.add(blackOliveCB);
+        toppingPnl.add(greenOliveCB);
+
+        mainPnl.add(toppingPnl, gbc);
     }
 }
