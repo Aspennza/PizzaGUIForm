@@ -9,9 +9,9 @@ public class PizzaGUIFrame extends javax.swing.JFrame
     JPanel orderPnl;
     JPanel controlPnl;
 
-    JRadioButton thinBtn;
-    JRadioButton regularBtn;
-    JRadioButton deepDishBtn;
+    JRadioButton thinRB;
+    JRadioButton regularRB;
+    JRadioButton deepDishRB;
 
     JComboBox sizeCB;
 
@@ -24,4 +24,10 @@ public class PizzaGUIFrame extends javax.swing.JFrame
     JCheckBox blackOliveCB;
     JCheckBox greenOliveCB;
 
+    JTextArea orderTA;
+    JScrollPane scroller;
+
+    JButton orderBtn;
+    JButton clearBtn;
+    JButton quitBtn;
 }
