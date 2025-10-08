@@ -17,7 +17,7 @@ public class PizzaGUIFrame extends javax.swing.JFrame
     JRadioButton regularRB;
     JRadioButton deepDishRB;
 
-    JComboBox sizeCB;
+    JComboBox<String> sizeCB;
 
     JCheckBox pepperoniCB;
     JCheckBox sausageCB;
@@ -51,6 +51,8 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         add(mainPnl);
 
         createCrustPnl();
+
+        createSizePnl();
 
         setSize(screenWidth * 3/4, screenHeight * 3/4);
         setLocationRelativeTo(null);
@@ -87,5 +89,26 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         group.add(deepDishRB);
 
         mainPnl.add(crustPnl, gbc);
+    }
+
+    private void createSizePnl()
+    {
+        sizePnl = new JPanel();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1;
+        //may need to add a fill constraint
+
+        sizePnl.setBorder(new TitledBorder(new EtchedBorder(), "Pizza Size"));
+
+        sizeCB = new JComboBox<>();
+        sizeCB.addItem("Small - $8.00");
+        sizeCB.addItem("Medium - $12.00");
+        sizeCB.addItem("Large - $16.00");
+        sizeCB.addItem("Super - $20.00");
+
+        sizePnl.add(sizeCB);
+        mainPnl.add(sizePnl, gbc);
     }
 }
