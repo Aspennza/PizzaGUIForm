@@ -7,8 +7,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-//do UML diagrams
-
 /**
  * Creates an extension of the JFrame class called PizzaGUIFrame. Allows users to select from a variety
  * of crust styles, pizza sizes, and toppings and outputs their selections to the GUI.
