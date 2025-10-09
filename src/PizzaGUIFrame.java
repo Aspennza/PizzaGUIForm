@@ -22,6 +22,7 @@ public class PizzaGUIFrame extends javax.swing.JFrame
     JRadioButton thinRB;
     JRadioButton regularRB;
     JRadioButton deepDishRB;
+    ButtonGroup group = new ButtonGroup();
 
     JComboBox<String> sizeCB;
 
@@ -95,7 +96,6 @@ public class PizzaGUIFrame extends javax.swing.JFrame
 
         regularRB.setSelected(true);
 
-        ButtonGroup group = new ButtonGroup();
         group.add(thinRB);
         group.add(regularRB);
         group.add(deepDishRB);
@@ -198,7 +198,21 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         controlPnl.add(clearBtn);
         clearBtn.addActionListener((ActionEvent ae) ->
         {
+            group.clearSelection();
+            regularRB.setSelected(true);
 
+            sizeCB.setSelectedIndex(0);
+
+            pepperoniCB.setSelected(false);
+            sausageCB.setSelected(false);
+            jalapenoCB.setSelected(false);
+            onionCB.setSelected(false);
+            pineappleCB.setSelected(false);
+            pepperCB.setSelected(false);
+            blackOliveCB.setSelected(false);
+            greenOliveCB.setSelected(false);
+
+            orderTA.setText("");
         });
 
         controlPnl.add(quitBtn);
