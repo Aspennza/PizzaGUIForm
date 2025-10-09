@@ -182,7 +182,7 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         gbc.gridheight = 1;
         gbc.fill = GridBagConstraints.BOTH;
 
-        sizePnl.setBorder(new CompoundBorder((new TitledBorder(new EtchedBorder(), "Pizza Size")), new EmptyBorder(10, 10, 10, 10))) ;
+        sizePnl.setBorder(new CompoundBorder((new TitledBorder(new EtchedBorder(), "Pizza Size")), new EmptyBorder(10, 10, 10, 10)));
 
         sizeCB = new JComboBox<>();
         sizeCB.addItem("Small");
@@ -206,7 +206,7 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         gbc.gridheight = 2;
         gbc.fill = GridBagConstraints.BOTH;
 
-        toppingPnl.setBorder(new CompoundBorder((new TitledBorder(new EtchedBorder(), "Toppings")), new EmptyBorder(10, 10, 10, 10))) ;
+        toppingPnl.setBorder(new CompoundBorder((new TitledBorder(new EtchedBorder(), "Toppings")), new EmptyBorder(10, 10, 10, 10)));
         toppingPnl.setLayout(new GridLayout(4, 2));
 
         pepperoniCB = new JCheckBox("Pepperoni +$1.00");
@@ -242,7 +242,7 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         gbc.gridheight = 2;
         gbc.fill = GridBagConstraints.BOTH;
 
-        orderPnl.setBorder(new CompoundBorder((new TitledBorder(new EtchedBorder(), "Your Order")), new EmptyBorder(10, 10, 10, 10))) ;
+        orderPnl.setBorder(new CompoundBorder((new TitledBorder(new EtchedBorder(), "Your Order")), new EmptyBorder(10, 10, 10, 10)));
 
         orderTA = new JTextArea(10, 50);
         orderTA.setEditable(false);
