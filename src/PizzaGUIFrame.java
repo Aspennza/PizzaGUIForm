@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.tools.Tool;
@@ -42,6 +44,8 @@ public class PizzaGUIFrame extends javax.swing.JFrame
     JButton clearBtn;
     JButton quitBtn;
 
+    Font buttonFont;
+
     boolean ordered = false;
 
     GridBagConstraints gbc = new GridBagConstraints();
@@ -59,6 +63,8 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         mainPnl.setLayout(new GridBagLayout());
         add(mainPnl);
 
+        mainPnl.setBackground(new Color(123, 0, 51));
+
         createCrustPnl();
 
         createSizePnl();
@@ -69,7 +75,7 @@ public class PizzaGUIFrame extends javax.swing.JFrame
 
         createControlPnl();
 
-        setSize(screenWidth * 3/4, screenHeight * 3/4);
+        setSize(screenWidth /2, screenHeight /2);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Pizza Order Form");
@@ -86,7 +92,7 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         gbc.fill = GridBagConstraints.BOTH;
 
         crustPnl.setLayout(new GridLayout(3, 1));
-        crustPnl.setBorder(new TitledBorder(new EtchedBorder(), "Crust Type"));
+        crustPnl.setBorder(new CompoundBorder((new TitledBorder(new EtchedBorder(), "Crust Type")), new EmptyBorder(10, 10, 10, 10)));
 
         thinRB = new JRadioButton("Thin");
         regularRB = new JRadioButton("Regular");
@@ -114,7 +120,7 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         gbc.gridheight = 1;
         gbc.fill = GridBagConstraints.BOTH;
 
-        sizePnl.setBorder(new TitledBorder(new EtchedBorder(), "Pizza Size"));
+        sizePnl.setBorder(new CompoundBorder((new TitledBorder(new EtchedBorder(), "Pizza Size")), new EmptyBorder(10, 10, 10, 10))) ;
 
         sizeCB = new JComboBox<>();
         sizeCB.addItem("Small");
@@ -135,7 +141,7 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         gbc.gridheight = 2;
         gbc.fill = GridBagConstraints.BOTH;
 
-        toppingPnl.setBorder(new TitledBorder(new EtchedBorder(), "Toppings"));
+        toppingPnl.setBorder(new CompoundBorder((new TitledBorder(new EtchedBorder(), "Toppings")), new EmptyBorder(10, 10, 10, 10))) ;
         toppingPnl.setLayout(new GridLayout(4, 2));
 
         pepperoniCB = new JCheckBox("Pepperoni +$1.00");
@@ -168,7 +174,7 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         gbc.gridheight = 2;
         gbc.fill = GridBagConstraints.BOTH;
 
-        orderPnl.setBorder(new TitledBorder(new EtchedBorder(), "Your Order"));
+        orderPnl.setBorder(new CompoundBorder((new TitledBorder(new EtchedBorder(), "Your Order")), new EmptyBorder(10, 10, 10, 10))) ;
 
         orderTA = new JTextArea(10, 50);
         orderTA.setEditable(false);
@@ -187,12 +193,25 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         gbc.gridheight = 1;
         gbc.fill = GridBagConstraints.BOTH;
 
-        controlPnl.setBorder(new EtchedBorder());
+        controlPnl.setBorder(new CompoundBorder((new EtchedBorder()), new EmptyBorder(10, 10, 10, 10))) ;
         controlPnl.setLayout(new GridLayout(1, 3));
 
         orderBtn = new JButton("Order");
         clearBtn = new JButton("Clear");
         quitBtn = new JButton("Quit");
+
+        buttonFont = new Font("SansSerif", Font.BOLD, 16);
+
+        orderBtn.setFont(buttonFont);
+        clearBtn.setFont(buttonFont);
+        quitBtn.setFont(buttonFont);
+
+        orderBtn.setBackground(new Color(74, 74, 74));
+        clearBtn.setBackground(new Color(74, 74, 74));
+        quitBtn.setBackground(new Color(74, 74, 74));
+        orderBtn.setForeground(new Color(255, 255, 255));
+        clearBtn.setForeground(new Color(255, 255, 255));
+        quitBtn.setForeground(new Color(255, 255, 255));
 
         controlPnl.add(orderBtn);
         orderBtn.addActionListener((ActionEvent ae) ->
@@ -279,7 +298,7 @@ public class PizzaGUIFrame extends javax.swing.JFrame
                     taxPrice = (subTotalPrice * 0.07);
 
                     result += "\nTax:\t\t$" + String.format("%.2f", taxPrice);
-                    result += "\n---------------------------------------------------------------------\n";
+                    result += "\n-----------------------------------------------------------------------\n";
 
                     totalPrice = subTotalPrice + taxPrice;
 
@@ -312,6 +331,8 @@ public class PizzaGUIFrame extends javax.swing.JFrame
             greenOliveCB.setSelected(false);
 
             orderTA.setText("");
+
+            ordered = false;
         });
 
         controlPnl.add(quitBtn);
