@@ -8,7 +8,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-//Watch prof. wulf's lectures
 //Write javadoc
 //do UML diagrams
 
