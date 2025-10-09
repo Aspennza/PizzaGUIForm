@@ -3,59 +3,118 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
-import javax.tools.Tool;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-//Write javadoc
 //do UML diagrams
 
+/**
+ * Creates an extension of the JFrame class called PizzaGUIFrame. Allows users to select from a variety
+ * of crust styles, pizza sizes, and toppings and outputs their selections to the GUI.
+ * @author Zoe Aspenns aspennza@mail.uc.edu
+ */
 public class PizzaGUIFrame extends javax.swing.JFrame
 {
+    //A JPanel containing all the other JPanels in the program
     JPanel mainPnl;
+
+    //A JPanel containing radio buttons for selecting different pizza crusts
     JPanel crustPnl;
+
+    //A JPanel containing a JComboBox for selecting pizza size
     JPanel sizePnl;
+
+    //A JPanel containing JCheckBoxes for selecting toppings
     JPanel toppingPnl;
+
+    //A JPanel with a JTextArea that outputs the final order total
     JPanel orderPnl;
+
+    //A JPanel with buttons for controlling the application, like Order, Clear, and Quit
     JPanel controlPnl;
 
+    //A JRadioButton representing thin crust pizza
     JRadioButton thinRB;
+
+    //A JRadioButton representing regular crust pizza
     JRadioButton regularRB;
+
+    //A JRadioButton representing deep dish pizza
     JRadioButton deepDishRB;
+
+    //A ButtonGroup for grouping the JRadioButtons together
     ButtonGroup group = new ButtonGroup();
 
+    //A JComboBox for containing different pizza size options
     JComboBox<String> sizeCB;
 
+    //A JCheckBox representing pepperoni topping
     JCheckBox pepperoniCB;
+
+    //A JCheckBox representing sausage topping
     JCheckBox sausageCB;
+
+    //A JCheckBox representing jalapeno topping
     JCheckBox jalapenoCB;
+
+    //A JCheckBox representing onion topping
     JCheckBox onionCB;
+
+    //A JCheckBox representing pineapple topping
     JCheckBox pineappleCB;
+
+    //A JCheckBox representing peppers as a topping
     JCheckBox pepperCB;
+
+    //A JCheckBox representing black olive topping
     JCheckBox blackOliveCB;
+
+    //A JCheckBox representing green olive topping
     JCheckBox greenOliveCB;
 
+    //A JTextArea for displaying the customer's finished order total like a receipt
     JTextArea orderTA;
+
+    //A JScrollPane for allowing orderTA to scroll
     JScrollPane scroller;
 
+    //A JButton allowing users to view their finished order
     JButton orderBtn;
+
+    //A JButton allowing users to clear the GUI and make a new pizza order
     JButton clearBtn;
+
+    //A JButton allowing users to quit the program
     JButton quitBtn;
 
+    //A custom Font for the control panel buttons
     Font buttonFont;
 
+    //A boolean tracking whether the customer has ordered yet or not
     boolean ordered = false;
 
+    //A GridBagConstraints object allowing each panel to be manually arranged in the main panel
     GridBagConstraints gbc = new GridBagConstraints();
 
+    /**
+     * This constructor determines the basic settings for PizzaGUIFrame and calls
+     * all the methods that establish the individual panels in the frame.
+     */
     public PizzaGUIFrame()
     {
         super("Pizza Order Form");
 
+        //This Toolkit is used to find the screen size of the computer running the GUI
         Toolkit kit = Toolkit.getDefaultToolkit();
+
+        //This Dimension stores the screen size
         Dimension screenSize = kit.getScreenSize();
+
+        //This int stores the height of the screen
         int screenHeight = screenSize.height;
+
+        //This int stores the width of the screen
         int screenWidth = screenSize.width;
 
         mainPnl = new JPanel();
@@ -81,6 +140,9 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         setVisible(true);
     }
 
+    /**
+     * This method establishes the crustPnl, its GridBagConstraints, and the radio buttons inside it.
+     */
     private void createCrustPnl()
     {
         crustPnl = new JPanel();
@@ -110,6 +172,9 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         mainPnl.add(crustPnl, gbc);
     }
 
+    /**
+     * This method establishes the sizePnl, its GridBagConstraints, and the JComboBox options inside it.
+     */
     private void createSizePnl()
     {
         sizePnl = new JPanel();
@@ -131,6 +196,9 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         mainPnl.add(sizePnl, gbc);
     }
 
+    /**
+     * This method establishes the toppingPnl, its GridBagConstraints, and the JCheckBoxes inside it.
+     */
     private void createToppingPnl()
     {
         toppingPnl = new JPanel();
@@ -164,6 +232,9 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         mainPnl.add(toppingPnl, gbc);
     }
 
+    /**
+     * This method establishes the orderPnl, its GridBagConstraints, and the JTextArea and JScrollPanel inside it.
+     */
     private void createOrderPnl()
     {
         orderPnl = new JPanel();
@@ -183,6 +254,10 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         mainPnl.add(orderPnl, gbc);
     }
 
+    /**
+     * This method establishes the controlPnl, its GridBagConstraints, and the JButtons inside it.
+     * It also sets the ActionListeners for the buttons, which control most of the functional code in the frame.
+     */
     private void createControlPnl()
     {
         controlPnl = new JPanel();
@@ -215,20 +290,31 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         controlPnl.add(orderBtn);
         orderBtn.addActionListener((ActionEvent ae) ->
         {
+            //This double stores the price associated with the chosen pizza size
             double sizePrice;
+
+            //This double stores the price of the pizza size and its toppings
             double subTotalPrice;
+
+            //This double stores the price of the tax on the pizza
             double taxPrice;
+
+            //This double stores the price of the pizza plus tax
             double totalPrice;
 
+            //This algorithm determines whether the customer has already ordered; if so, they must clear the GUI before ordering again
             if(ordered)
             {
                 JOptionPane.showMessageDialog(null, "To create a new order, please press the Clear button.");
             } else {
+                //This algorithm determines whether the user has selected any toppings; if so, the program calculates their total; if not, they are prompted to pick a topping
                 if (pepperoniCB.isSelected() || sausageCB.isSelected() || jalapenoCB.isSelected() || onionCB.isSelected() || pineappleCB.isSelected() || pepperCB.isSelected() || blackOliveCB.isSelected() || greenOliveCB.isSelected()) {
                     ordered = true;
 
+                    //This String stores the complete order that will be printed to the JTextArea
                     String result = "=========================================\n";
 
+                    //This algorithm tests which crust type was selected and adds it to the result String
                     if (thinRB.isSelected()) {
                         result += "Thin Crust - ";
                     } else if (regularRB.isSelected()) {
@@ -239,6 +325,7 @@ public class PizzaGUIFrame extends javax.swing.JFrame
 
                     result += (String) sizeCB.getSelectedItem();
 
+                    //This algorithm tests which pizza size was selected and tracks the associated price
                     if (((String) sizeCB.getSelectedItem()).equals("Small")) {
                         sizePrice = 8.00;
                     } else if (((String) sizeCB.getSelectedItem()).equals("Medium")) {
@@ -252,41 +339,49 @@ public class PizzaGUIFrame extends javax.swing.JFrame
 
                     subTotalPrice = sizePrice;
 
+                    //This algorithm tests if the pepperoni checkbox is selected, adds it to the results String, and increments the total price
                     if (pepperoniCB.isSelected()) {
                         result += "Pepperoni\t\t$1.00\n";
                         subTotalPrice++;
                     }
 
+                    //This algorithm tests if the sausage checkbox is selected, adds it to the results String, and increments the total price
                     if (sausageCB.isSelected()) {
                         result += "Sausage\t\t$1.00\n";
                         subTotalPrice++;
                     }
 
+                    //This algorithm tests if the jalapeno checkbox is selected, adds it to the results String, and increments the total price
                     if (jalapenoCB.isSelected()) {
                         result += "Jalapeno\t\t$1.00\n";
                         subTotalPrice++;
                     }
 
+                    //This algorithm tests if the onion checkbox is selected, adds it to the results String, and increments the total price
                     if (onionCB.isSelected()) {
                         result += "Onion\t\t$1.00\n";
                         subTotalPrice++;
                     }
 
+                    //This algorithm tests if the pineapple checkbox is selected, adds it to the results String, and increments the total price
                     if (pineappleCB.isSelected()) {
                         result += "Pineapple\t\t$1.00\n";
                         subTotalPrice++;
                     }
 
+                    //This algorithm tests if the pepper checkbox is selected, adds it to the results String, and increments the total price
                     if (pepperCB.isSelected()) {
                         result += "Green Pepper\t\t$1.00\n";
                         subTotalPrice++;
                     }
 
+                    //This algorithm tests if the black olive checkbox is selected, adds it to the results String, and increments the total price
                     if (blackOliveCB.isSelected()) {
                         result += "Black Olive\t\t$1.00\n";
                         subTotalPrice++;
                     }
 
+                    //This algorithm tests if the green olive checkbox is selected, adds it to the results String, and increments the total price
                     if (greenOliveCB.isSelected()) {
                         result += "Green Olive\t\t$1.00\n";
                         subTotalPrice++;
@@ -313,6 +408,7 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         });
 
         controlPnl.add(clearBtn);
+        //This ActionListener clears all the selections from the GUI
         clearBtn.addActionListener((ActionEvent ae) ->
         {
             group.clearSelection();
@@ -337,8 +433,10 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         controlPnl.add(quitBtn);
         quitBtn.addActionListener((ActionEvent ae) ->
         {
+            //This int tracks whether the user confirmed or denied they wanted to quit the program
             int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to quit?", "Quit", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
+            //This algorithm determines whether to quit the program based on the user's input
             if(selection == JOptionPane.YES_OPTION) {
                 JOptionPane.showMessageDialog(null, "Quitting the program...");
                 System.exit(0);
