@@ -42,6 +42,8 @@ public class PizzaGUIFrame extends javax.swing.JFrame
     JButton clearBtn;
     JButton quitBtn;
 
+    boolean ordered = false;
+
     GridBagConstraints gbc = new GridBagConstraints();
 
     public PizzaGUIFrame()
@@ -200,89 +202,95 @@ public class PizzaGUIFrame extends javax.swing.JFrame
             double taxPrice;
             double totalPrice;
 
-            if(pepperoniCB.isSelected() || sausageCB.isSelected() || jalapenoCB.isSelected() || onionCB.isSelected() || pineappleCB.isSelected() || pepperCB.isSelected() || blackOliveCB.isSelected() || greenOliveCB.isSelected()) {
-                String result = "=========================================\n";
-
-                if (thinRB.isSelected()) {
-                    result += "Thin Crust - ";
-                } else if (regularRB.isSelected()) {
-                    result += "Regular Crust - ";
-                } else {
-                    result += "Deep Dish Crust - ";
-                }
-
-                result += (String) sizeCB.getSelectedItem();
-
-                if (((String) sizeCB.getSelectedItem()).equals("Small")) {
-                    sizePrice = 8.00;
-                    result += "\t\t" + sizePrice + "\n";
-                } else if (((String) sizeCB.getSelectedItem()).equals("Medium")) {
-                    sizePrice = 12.00;
-                    result += "\t\t" + sizePrice + "\n";
-                } else if (((String) sizeCB.getSelectedItem()).equals("Large")) {
-                    sizePrice = 16.00;
-                    result += "\t\t" + sizePrice + "\n";
-                } else {
-                    sizePrice = 20.00;
-                    result += "\t\t" + sizePrice + "\n";
-                }
-
-                subTotalPrice = sizePrice;
-
-                if (pepperoniCB.isSelected()) {
-                    result += "Pepperoni\t\t$1.00\n";
-                    subTotalPrice++;
-                }
-
-                if (sausageCB.isSelected()) {
-                    result += "Sausage\t\t$1.00\n";
-                    subTotalPrice++;
-                }
-
-                if (jalapenoCB.isSelected()) {
-                    result += "Jalapeno\t\t$1.00\n";
-                    subTotalPrice++;
-                }
-
-                if (onionCB.isSelected()) {
-                    result += "Onion\t\t$1.00\n";
-                    subTotalPrice++;
-                }
-
-                if (pineappleCB.isSelected()) {
-                    result += "Pineapple\t\t$1.00\n";
-                    subTotalPrice++;
-                }
-
-                if (pepperCB.isSelected()) {
-                    result += "Green Pepper\t\t$1.00\n";
-                    subTotalPrice++;
-                }
-
-                if (blackOliveCB.isSelected()) {
-                    result += "Black Olive\t\t$1.00\n";
-                    subTotalPrice++;
-                }
-
-                if (greenOliveCB.isSelected()) {
-                    result += "Green Olive\t\t$1.00\n";
-                    subTotalPrice++;
-                }
-
-                result += "\nSub-total:\t\t" + subTotalPrice;
-
-                taxPrice = (subTotalPrice * 0.07);
-
-                result += "\nTax:\t\t" + String.format("%.2f", taxPrice);
-                result += "\n---------------------------------------------------------------------\n";
-
-                totalPrice = subTotalPrice + taxPrice;
-
-                result += "Total:\t\t" + String.format("%.2f", totalPrice);
-
-                result += "\n=========================================";
+            if(ordered)
+            {
+                JOptionPane.showMessageDialog(null, "To create a new order, please press the Clear button.");
             } else {
-                JOptionPane.showMessageDialog(null, "You must select at least one topping for your pizza before ordering.");
+                if (pepperoniCB.isSelected() || sausageCB.isSelected() || jalapenoCB.isSelected() || onionCB.isSelected() || pineappleCB.isSelected() || pepperCB.isSelected() || blackOliveCB.isSelected() || greenOliveCB.isSelected()) {
+                    ordered = true;
+
+                    String result = "=========================================\n";
+
+                    if (thinRB.isSelected()) {
+                        result += "Thin Crust - ";
+                    } else if (regularRB.isSelected()) {
+                        result += "Regular Crust - ";
+                    } else {
+                        result += "Deep Dish Crust - ";
+                    }
+
+                    result += (String) sizeCB.getSelectedItem();
+
+                    if (((String) sizeCB.getSelectedItem()).equals("Small")) {
+                        sizePrice = 8.00;
+                    } else if (((String) sizeCB.getSelectedItem()).equals("Medium")) {
+                        sizePrice = 12.00;
+                    } else if (((String) sizeCB.getSelectedItem()).equals("Large")) {
+                        sizePrice = 16.00;
+                    } else {
+                        sizePrice = 20.00;
+                    }
+                    result += "\t$" + String.format("%.2f", sizePrice) + "\n";
+
+                    subTotalPrice = sizePrice;
+
+                    if (pepperoniCB.isSelected()) {
+                        result += "Pepperoni\t\t$1.00\n";
+                        subTotalPrice++;
+                    }
+
+                    if (sausageCB.isSelected()) {
+                        result += "Sausage\t\t$1.00\n";
+                        subTotalPrice++;
+                    }
+
+                    if (jalapenoCB.isSelected()) {
+                        result += "Jalapeno\t\t$1.00\n";
+                        subTotalPrice++;
+                    }
+
+                    if (onionCB.isSelected()) {
+                        result += "Onion\t\t$1.00\n";
+                        subTotalPrice++;
+                    }
+
+                    if (pineappleCB.isSelected()) {
+                        result += "Pineapple\t\t$1.00\n";
+                        subTotalPrice++;
+                    }
+
+                    if (pepperCB.isSelected()) {
+                        result += "Green Pepper\t\t$1.00\n";
+                        subTotalPrice++;
+                    }
+
+                    if (blackOliveCB.isSelected()) {
+                        result += "Black Olive\t\t$1.00\n";
+                        subTotalPrice++;
+                    }
+
+                    if (greenOliveCB.isSelected()) {
+                        result += "Green Olive\t\t$1.00\n";
+                        subTotalPrice++;
+                    }
+
+                    result += "\nSub-total:\t\t$" + String.format("%.2f", subTotalPrice);
+
+                    taxPrice = (subTotalPrice * 0.07);
+
+                    result += "\nTax:\t\t$" + String.format("%.2f", taxPrice);
+                    result += "\n---------------------------------------------------------------------\n";
+
+                    totalPrice = subTotalPrice + taxPrice;
+
+                    result += "Total:\t\t$" + String.format("%.2f", totalPrice);
+
+                    result += "\n=========================================";
+
+                    orderTA.setText(result);
+                } else {
+                    JOptionPane.showMessageDialog(null, "You must select at least one topping for your pizza before ordering.");
+                }
             }
         });
 
