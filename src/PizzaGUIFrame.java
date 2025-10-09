@@ -3,6 +3,12 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.tools.Tool;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+//Watch prof. wulf's lectures
+//Write javadoc
+//do UML diagrams
 
 public class PizzaGUIFrame extends javax.swing.JFrame
 {
@@ -57,6 +63,8 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         createToppingPnl();
 
         createOrderPnl();
+
+        createControlPnl();
 
         setSize(screenWidth * 3/4, screenHeight * 3/4);
         setLocationRelativeTo(null);
@@ -185,8 +193,28 @@ public class PizzaGUIFrame extends javax.swing.JFrame
         quitBtn = new JButton("Quit");
 
         controlPnl.add(orderBtn);
+        //actionlistener
 
+        controlPnl.add(clearBtn);
+        clearBtn.addActionListener((ActionEvent ae) ->
+        {
 
+        });
 
+        controlPnl.add(quitBtn);
+        quitBtn.addActionListener((ActionEvent ae) ->
+        {
+            int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to quit?", "Quit", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+            if(selection == JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(null, "Quitting the program...");
+                System.exit(0);
+            } else
+            {
+                JOptionPane.showMessageDialog(null, "The program will remain open.");
+            }
+        });
+
+        mainPnl.add(controlPnl, gbc);
     }
 }
